@@ -1,105 +1,96 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
-
 # Make sure we’re using the latest Homebrew.
 brew update
 
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
-
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
-# Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
-brew install bash
-brew tap homebrew/versions
-brew install bash-completion2
-
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
-fi;
+# Bundler for non-Ruby dependencies from Homebrew.
+# https://github.com/Homebrew/homebrew-bundle
+brew tap Homebrew/bundle
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
-# Install RingoJS and Narwhal.
-# Note that the order in which these are installed is important;
-# see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
+# Node.js JavaScript runtime.
+# https://github.com/nodejs/node
+brew install node # This installs `npm` too using the recommended installation method.
 
-# Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
-brew install homebrew/php/php56 --with-gmp
+# Managing dock items.
+# https://github.com/kcrawford/dockutil
+brew install dockutil
 
-# Install font tools.
-brew tap bramstein/webfonttools
-brew install sfnt2woff
-brew install sfnt2woff-zopfli
-brew install woff2
+# Keeping application settings in sync.
+# https://github.com/lra/mackup
+brew install mackup
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
-brew install aircrack-ng
-brew install bfg
-brew install binutils
-brew install binwalk
-brew install cifer
-brew install dex2jar
-brew install dns2tcp
-brew install fcrackzip
-brew install foremost
-brew install hashpump
-brew install hydra
-brew install john
-brew install knock
-brew install netpbm
-brew install nmap
-brew install pngcheck
-brew install socat
-brew install sqlmap
-brew install tcpflow
-brew install tcpreplay
-brew install tcptrace
-brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
-brew install xz
-
-# Install other useful binaries.
-brew install ack
+# Control the macOS dark mode from the command-line.
+# https://github.com/sindresorhus/dark-mode
 brew install dark-mode
-#brew install exiv2
-brew install git
-brew install git-lfs
-brew install imagemagick --with-webp
-brew install lua
-brew install lynx
-brew install p7zip
-brew install pigz
-brew install pv
-brew install rename
-brew install rhino
-brew install speedtest_cli
-brew install ssh-copy-id
-brew install testssl
-brew install tree
-brew install vbindiff
+
+# Useful binaries.
+# https://github.com/ImageMagick/ImageMagick
+brew install imagemagick --with-webpn
+
+# Converts VobSub subtitles (.idx/.srt format) into .srt subtitles.
+# https://github.com/ruediger/VobSub2SRT
+brew install vobsub2srt
+
+# Command-line shell and scripting interface for Drupal
+# https://github.com/drush-ops/drush
+brew install drush
+
+# PHP library to collect and manipulate gettext (.po, .mo, .php, .json, etc).
+# https://github.com/oscarotero/Gettext
+brew install gettext
+
+# Command-line program to download videos from YouTube.com and other video sites.
+# https://github.com/rg3/youtube-dl
+brew install youtube-dl
+
+# Command line toolbox to manipulate, convert and stream multimedia content.
+# https://github.com/FFmpeg/FFmpeg
+brew install ffmpeg --with-fdk-aac --with-freetype --with-openssl --with-libvorbis --with-libvpx --with-rtmpdump --with-tesseract --with-tools --with-xz
+
+# Command line tool that creates screenshots of webpages.
+# https://github.com/paulhammond/webkit2png/
 brew install webkit2png
-brew install zopfli
+
+# Magnificent app which corrects your previous console command.
+# https://github.com/nvbn/thefuck
+brew install thefuck
+
+# Simple command line interface for the Mac App Store.
+# https://github.com/mas-cli/mas
+brew install mas
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+##################################################
+
+# Cask
+brew tap caskroom/cask
+brew install brew-cask
+brew tap caskroom/versions
+
+# Install cask packages to /Applications
+brew cask install atom
+brew cask install cleanmymac
+brew cask install dash
+brew cask install docker
+brew cask install dropbox
+brew cask install firefox
+brew cask install google-chrome
+brew cask install google-drive
+#brew cask install handbrake
+brew cask install kaleidoscope
+brew cask install mplayerx
+brew cask install screenflow
+#brew cask install subler
+brew cask install sublime-text
+brew cask install sequel-pro
+brew cask install tower
+#brew cask install transmission
+#brew cask install transmit
